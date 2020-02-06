@@ -22,10 +22,10 @@ spec:
         default: .
       - name: dockerfile
         description: The name of the Dockerfile
-        default: "Dockerfile"
+        default: "ibmcom/pipeline-base-image"
       - name: buildkit_image
         description: The name of the BuildKit image
-        default: "moby/buildkit:v0.6.3-rootless"
+        default: "Docker"
       - name: additionalTags
         description: comma-separated list of additionalTags
         # can not be defined as an array because of variable substition error for array
