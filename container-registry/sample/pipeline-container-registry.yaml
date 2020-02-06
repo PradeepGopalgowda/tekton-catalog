@@ -14,7 +14,7 @@ spec:
   - name: app-image
     type: image
   tasks:
-    - name: pipeline-1-clone-task
+    - name: clone-task
       taskRef:
         name: clone-repo-task
       params:
@@ -24,8 +24,8 @@ spec:
           value: $(params.repository)
         - name: branch
           value: $(params.branch)
-    - name: pipeline-2-containerize-task
-      runAfter: [pipeline-1-clone-task]
+    - name: containerize-task
+      runAfter: [clone-task]
       taskRef:
         name: containerize-task
       params:
@@ -46,7 +46,7 @@ spec:
         outputs:
           - name: builtImage
             resource: app-image
-    - name: pipeline-3-va-task
+    - name: va-task
       taskRef:
         name: vulnerability-advisor-task
       params:
@@ -65,4 +65,4 @@ spec:
           - name: image
             resource: app-image
             from:
-              - pipeline-2-containerize-task
+              - containerize-task
